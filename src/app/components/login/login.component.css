@@ -1,5 +1,4 @@
 div.container {
-  direction: rtl;
   display: table;
   margin: 0 auto;
   background-color: #008053;
@@ -27,15 +26,18 @@ input {
   height: 30px;
   border: none;
   width: 100%;
+  padding: 0 7% 0 7%;
+  box-sizing: border-box;
 }
 
-button {
-    background-color: #f36f23;
-    border: none;
-    border-radius: 25px;
-    color: white;
-    height: 30px;
-    width: 100%;
+button[type="submit"] {
+  background-color: #f36f23;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  height: 30px;
+  width: 100%;
+  cursor: pointer;
 }
 
 h3 {

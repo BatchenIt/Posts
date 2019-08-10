@@ -1,25 +1,23 @@
 <div class="container">
   <h3>כניסה לחשבונך</h3>
-  <form>
+  <form [formGroup]="myForm" (ngSubmit)="submit()">
     <div class="form-fields">
       <label for="userName">* שם משתמש </label>
-      <input type="text" id="userName" />
+      <input type="text" id="userName" formControlName="userName" required />
+      <!-- <p>Value: {{ name.value }}</p> -->
     </div>
     <div class="form-fields">
       <label for="idNum">* מס' עוסק מורשה/ח.פ</label>
-      <input type="text" id="idNum" />
+      <input type="text" id="idNum" formControlName="idNum" />
+      <!-- <p>Value: {{ idNum.value }}</p> -->
     </div>
     <div class="form-fields">
       <label for="password">* סיסמא</label>
-      <input type="password" id="password" />
+      <input type="password" id="password" formControlName="password" />
+      <!-- <p>Value: {{ password.value }}</p> -->
     </div>
-    <!-- <div> -->
-      <!-- <div class="form-fields btn-container"> -->
-        <button type="submit">כניסה לחשבון</button>
-      <!-- </div> -->
-    <!-- </div> -->
-    <!-- <div> -->
-      <a href="#">שכחתי סיסמא</a>
-    <!-- </div> -->
+    <button type="submit" [disabled]="!myForm.valid">כניסה לחשבון</button>
+    <a href="#">שכחתי סיסמא</a>
   </form>
+  <p>Form Status: {{ myForm.status }}</p>
 </div>
