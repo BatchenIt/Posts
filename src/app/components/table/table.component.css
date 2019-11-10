@@ -1,0 +1,12 @@
+td {
+  text-align: center;
+}
+
+div.container {
+  margin: 4%;
+}
+
+input.inputForFilter {
+  direction: rtl;
+  text-align: right;
+}
