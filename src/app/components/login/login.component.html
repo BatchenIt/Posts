@@ -1,20 +1,29 @@
-<!-- <div class="container">
-  <h3>כניסה לחשבונך</h3>
-  <form [formGroup]="myForm" (ngSubmit)="submit()">
-    <div class="form-fields">
-      <label for="userName">* שם משתמש </label>
-      <input type="text" id="userName" formControlName="userName" required />
+<div>
+  <div *ngIf="isLoginPage" class="container">
+    <div class="form-container">
+      <h3>כניסה לחשבונך</h3>
+      <form (ngSubmit)="submit()">
+        <div class="form-fields">
+          <label for="userName">* שם משתמש </label>
+          <input type="text" id="userName" name="userName" [(ngModel)]="loginObj.userName" required />
+        </div>
+        <div class="form-fields">
+          <label for="idNum">* מס' עוסק מורשה/ח.פ</label>
+          <input type="text" id="idNum" name="idNum" [(ngModel)]="loginObj.idNum"
+            (keypress)="checkIfOnlyNumbers($event)" required />
+        </div>
+        <div class="form-fields">
+          <label for="password">* סיסמא</label>
+          <input type="password" id="password" name="password" [(ngModel)]="loginObj.password" required />
+        </div>
+        <div class="button-container">
+          <button type="submit">כניסה לחשבון</button>
+        </div>
+        <a href="#">שכחתי סיסמא</a>
+      </form>
     </div>
-    <div class="form-fields">
-      <label for="idNum">* מס' עוסק מורשה/ח.פ</label>
-      <input type="text" id="idNum" formControlName="idNum" />
-    </div>
-    <div class="form-fields">
-      <label for="password">* סיסמא</label>
-      <input type="password" id="password" formControlName="password" />
-    </div>
-    <button type="submit" [disabled]="!myForm.valid">כניסה לחשבון</button>
-    <a href="#">שכחתי סיסמא</a>
-  </form>
-  <p>Form Status: {{ myForm.status }}</p>
-</div> -->
+  </div>
+
+  <app-table *ngIf="!isLoginPage"></app-table>
+
+</div>

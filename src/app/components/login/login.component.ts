@@ -1,10 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  FormBuilder,
-  Validators,
-  FormGroup,
-  FormControl
-} from "@angular/forms";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-login",
@@ -12,22 +7,37 @@ import {
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  myForm = this.formBuilder.group({
-    userName: ["", Validators.required],
-    idNum: ["", Validators.required],
-    password: ["", Validators.required]
-  });
-  // myForm = new FormGroup({
-  //   userName: new FormControl(""),
-  //   idNum: new FormControl(""),
-  //   password: new FormControl("")
-  // });
 
-  constructor(private formBuilder: FormBuilder) {}
+  loginObj = this._initLoginObj();
+  isLoginPage: boolean = true;
 
-  ngOnInit() {}
+  constructor(private toastr: ToastrService) { }
+
+  ngOnInit() {
+  }
+
+  private _initLoginObj() {
+    return {
+      userName: '',
+      idNum: '',
+      password: ''
+    }
+  }
+
+  checkIfOnlyNumbers(e) {
+    // todo - numbers only validation
+  }
+
+  private _isFormValid(): boolean {
+    let isFormValid = true;
+    for (let value of Object.values(this.loginObj)) {
+      if (value.trim() == '') isFormValid = false;
+    }
+    return isFormValid;
+  }
 
   submit() {
-    console.log(this.myForm.value);
+    if (!this._isFormValid()) { return this.toastr.error('יש להזין ערכים בכל השדות'); }
+    this.isLoginPage = false;
   }
 }
